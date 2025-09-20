@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: azure;
+    margin: 0;
+
+
+}
+
+nav {
+    padding: 20px;
+    background-color: rgba(246, 229, 229, 0.676);
+
+
+}
+
+.a {
+    margin-top: 2px;
+    height: 1px;
+    background-color: black;
+    width: 19px;
+}
+
+.b {
+    margin-top: 3px;
+    height: 1px;
+    background-color: black;
+    width: 18px;
+}
+
+.c {
+    margin-top: 3px;
+    height: 1px;
+    background-color: black;
+    width: 20px;
+}
+
+#p {
+    margin-left: 1200px;
+
+
+}
+
+#p:hover {
+    border-bottom: solid 1px rgb(0, 0, 0);
+    height: 10px;
+}
+
+.s {
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    background-color: beige;
+    margin-top: 80px;
+    margin-left: 30px;
+
+}

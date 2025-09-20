@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Connected World - Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box;outline:none; }
+    body {
+      background: #011627;
+      font-family:'Times New Roman', Times, serif ;
+      color: white;
+    }
+    @media (max-width: 600px) {
+  header {
+    height: 120px;
+  }
+  .balao {
+    width: 80px;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .h {
+    margin-left: 0;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  #controles-chamada, #controles-resposta {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 20px;
+}
+#controles-chamada button, #controles-resposta button {
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: #081c15;
+    color: white;
+    border: 1px solid gold;
+    font-size: 16px;
+    transition: all 0.3s;
+}
+#controles-chamada button:hover, #controles-resposta button:hover {
+    background-color: #0a2e1f;
+}
+  .nav-button {
+    margin: 5px;
+  }
+  nav {
+    margin-top: 140px;
+    padding: 10px;
+  }
+  .con1_2 {
+    width: 60%;
+    height: 60%;
+    margin: 20% auto 0;
+  }
+  #modal-chamada {
+    width: 90vw;
+    height: auto;
+    padding: 20px;
+  }
+  #controles {
+    width: 100%;
+    flex-direction: row;
+    gap: 20px;
+    padding-top: 20px;
+  }
+  textarea, input[type="email"], input[type="password"] {
+    width: 100%;
+    max-width: 100%;
+  }
+  .mensagem {
+    max-width: 90% !important;
+    height: auto !important;
+    word-break: break-word;
+  }
+  .form {
+    width: 100%;
+    max-width: 100%;
+  }
+  .p2 {
+    text-align: center;
+  }
+  .p4 {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
+
+    /* From Uiverse.io by satyamchaudharydev */
+        /* From uiverse.io by @satyamchaudharydev */
+        /* this button is inspired by -- whatsapp input */
+        /* == type to see fully interactive and click the close buttom to remove the text  == */
+        .form {
+            --input-bg: #FFf;
+            /*  background of input */
+            --padding: 1.5em;
+            --rotate: 80deg;
+            /*  rotation degree of input*/
+            --gap: 2em;
+            /*  gap of items in input */
+            --icon-change-color: #15A986;
+            /*  when rotating changed icon color */
+            --height: 45px;
+            /*  height */
+            width: 300px;
+            padding-inline-end: 1em;
+            /*  change this for padding in the end of input */
+            background: var(--input-bg);
+            position: relative;
+            border-radius: 4px;
+        }
+
+        .form label {
+            display: flex;
+            align-items: center;
+            width: 100%;
+            height: var(--height);
+        }
+
+        .form input {
+            width: 100%;
+            padding-inline-start: calc(var(--padding) + var(--gap));
+            outline: none;
+            background: none;
+            border: 0;
+        }
+
+        /* style for both icons -- search,close */
+        .form svg {
+            /* display: block; */
+            color: #111;
+            transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+            position: absolute;
+            height: 15px;
+        }
+
+        /* search icon */
+        .icon {
+            position: absolute;
+            left: var(--padding);
+            transition: 0.3s cubic-bezier(.4, 0, .2, 1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* arrow-icon*/
+        .swap-off {
+            transform: rotate(-80deg);
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* close button */
+        .close-btn {
+            /* removing default bg of button */
+            background: none;
+            border: none;
+            right: calc(var(--padding) - var(--gap));
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #111;
+            padding: 0.1em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            transition: 0.3s;
+            opacity: 0;
+            transform: scale(0);
+            visibility: hidden;
+        }
+
+        .form input:focus~.icon {
+            transform: rotate(var(--rotate)) scale(1.3);
+        }
+
+        .form input:focus~.icon .swap-off {
+            opacity: 1;
+            transform: rotate(-80deg);
+            visibility: visible;
+            color: var(--icon-change-color);
+        }
+
+        .form input:focus~.icon .swap-on {
+            opacity: 0;
+            visibility: visible;
+        }
+
+        .form input:valid~.icon {
+            transform: scale(1.3) rotate(var(--rotate))
+        }
+
+        .form input:valid~.icon .swap-off {
+            opacity: 1;
+            visibility: visible;
+            color: var(--icon-change-color);
+        }
+
+        .form input:valid~.icon .swap-on {
+            opacity: 0;
+            visibility: visible;
+        }
+
+        .form input:valid~.close-btn {
+            opacity: 1;
+            visibility: visible;
+            transform: scale(1);
+            transition: 0s;
+        }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      height: 160px;
+      background: linear-gradient(300deg, #011627 -1%, #081c15 100%);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.19);
+      z-index: 1000;
+    }
+    .balao {
+      text-align:center;   
+            box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            border: 1px solid black;
+            text-align: center;
+            margin-top: 20px;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-left: 80px;
+            background-color: #081c15;
+        }
+    header h2 {
+      text-shadow:4px 4px 3px black;
+      margin:0 30px;
+      color:rgb(165, 89, 49);
+    }
+    .h {
+            margin-top: -75px;
+            margin-left: 310px;
+            font-size: 18px;
+            display: flex;
+            flex-direction: row;
+
+        }
+    .nav-button {
+       
+      background: none;
+      border: none;
+      margin: 0 20px;
+      cursor: pointer;
+      
+    }
+    .con {
+      
+      color:black;
+      width: 50px;
+      height: 50px;
+      transition: all 0.3s ease-in-out;
+    }
+    .nav-button.active .con {
+      
+      filter: drop-shadow(1px 4px 6px gold);
+      
+      border-radius: 3px;
+    }
+    .nav-button:hover {
+      
+      filter: drop-shadow(1px 4px 6px gold);
+      
+      border-radius: 3px;
+    }
+
+    .msg-sistema{
+      text-align:center;
+      color:gray;
+      font-style:italic;
+      margin:10px 0 ;
+    }
+    nav {
+      margin-top: 180px;
+      padding: 20px;
+    }
+    .page { display: none; }
+    .page.active { display: block; }
+    textarea,input[type="email"], input[type="password"] {
+      width: 100%;
+      max-width: 400px;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    button, .bt {
+      background-color: #081c15;
+      border: 1px solid gold;
+      padding: 10px 20px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    ul { list-style: none; padding: 0; }
+    li { margin-bottom: 10px; }
+    a { color: aqua; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .con1{
+      padding:-10px;
+      color:black;
+      width:100px;
+      height:100px;
+    }
+    
+
+    #modal-chamada{
+      display:none;
+       z-index: 9999;
+      text-align:center;
+      position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(300deg, #011627 -1%, #081c15 100%);
+            width:500px;
+            height:500px;
+            border-radius: 10px;
+box-shadow: 0 4px 10px 0 white, 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+    #icon_chamada{
+      text-align:center;
+      color:gold;
+      width:20px;
+      height:20px;
+  
+    }
+    textarea {
+      margin-top:10px;
+      resize:none;
+      
+      border-radius:7px;
+      background: #011627;
+      font-family: 'Comic Neue', cursive;
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 6px 20px  black;
+      z-index: 1000;
+    }
+    .chat{
+      margin-top:20px;
+      border-radius:5px;  
+      width:150px;
+      background: none;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1), 0 6px 20px  black;
+    }
+    .p1{
+      
+      margin-top:-10px;
+    }
+    #fundo-ofuscado {
+            display:none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9998;
+            pointer-events: all;
+            backdrop-filter: blur(4px);
+        }
+    
+
+    span{
+      color:rgb(165, 89, 49);
+    }
+    .botao{
+      margin:0 0 0 20px;
+    }
+        .con1_2{
+          box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin: 12.5% 25% 0 ;
+      padding:-10px;
+      color:black;
+      border-radius:100%;
+      background-color: #081c15;
+      width:40%;
+      height:40%;
+    }
+
+    #controles-chamada{
+      width:500px;
+            height:100px;
+          
+      text-align:end;
+      display: flex;
+            justify-content: center;
+            align-items:flex-end;    
+    }
+    .aba{
+      color:aqua;
+    }
+    .w1{
+      margin:0 318px;
+    }
+    .p2{
+      color:aqua;
+      margin:0 0 20px 0;
+    }
+    #btn-mute{
+      margin:0 12px;
+    }
+    .p5{
+      margin-top:20px;
+    }
+    a{
+      text-align:center;
+    }
+    @keyframes aparecerMensagem {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes piscar {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+.mensagem {
+  animation: aparecerMensagem 0.4s ease-in-out;
+}
+#mensagens {
+  max-height: 320px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background: #022;
+  padding: 10px;
+  border-radius: 5px;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  scrollbar-width: none;           /* Firefox */
+  -ms-overflow-style: none;        /* IE 10+ */
+}
+#mensagens::-webkit-scrollbar {
+  display: none;                   /* Chrome, Safari */
+}
+body.modal-ativo{
+overflow:hidden;
+}  
+#modal-chamada{
+  outline:none;
+}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="balao">
+      <buttom onclick="alertar()">
+<svg class="con1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z" clip-rule="evenodd" />
+</buttom>
+</svg>
+    </div>
+    {% if nome %}
+      <h2>{{ nome }}</h2>
+    {% endif %}
+    <div class="h">
+      <button class="nav-button active" data-page="home">
+    
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path d="M11.47 3.841a.75.75 0 0 1 1.06 0l8.69 8.69a.75.75 0 1 0 1.06-1.061l-8.689-8.69a2.25 2.25 0 0 0-3.182 0l-8.69 8.69a.75.75 0 1 0 1.061 1.06l8.69-8.689Z" />
+  <path d="m12 5.432 8.159 8.159c.03.03.06.058.091.086v6.198c0 1.035-.84 1.875-1.875 1.875H15a.75.75 0 0 1-.75-.75v-4.5a.75.75 0 0 0-.75-.75h-3a.75.75 0 0 0-.75.75V21a.75.75 0 0 1-.75.75H5.625a1.875 1.875 0 0 1-1.875-1.875v-6.198a2.29 2.29 0 0 0 .091-.086L12 5.432Z" />
+</svg>
+      </button>
+      <button class="nav-button" data-page="sms">
+        
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path d="M4.913 2.658c2.075-.27 4.19-.408 6.337-.408 2.147 0 4.262.139 6.337.408 1.922.25 3.291 1.861 3.405 3.727a4.403 4.403 0 0 0-1.032-.211 50.89 50.89 0 0 0-8.42 0c-2.358.196-4.04 2.19-4.04 4.434v4.286a4.47 4.47 0 0 0 2.433 3.984L7.28 21.53A.75.75 0 0 1 6 21v-4.03a48.527 48.527 0 0 1-1.087-.128C2.905 16.58 1.5 14.833 1.5 12.862V6.638c0-1.97 1.405-3.718 3.413-3.979Z" />
+  <path d="M15.75 7.5c-1.376 0-2.739.057-4.086.169C10.124 7.797 9 9.103 9 10.609v4.285c0 1.507 1.128 2.814 2.67 2.94 1.243.102 2.5.157 3.768.165l2.782 2.781a.75.75 0 0 0 1.28-.53v-2.39l.33-.026c1.542-.125 2.67-1.433 2.67-2.94v-4.286c0-1.505-1.125-2.811-2.664-2.94A49.392 49.392 0 0 0 15.75 7.5Z" />
+</svg>
+      </button>
+      <button class="nav-button" data-page="amigos">
+        
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path d="M4.5 6.375a4.125 4.125 0 1 1 8.25 0 4.125 4.125 0 0 1-8.25 0ZM14.25 8.625a3.375 3.375 0 1 1 6.75 0 3.375 3.375 0 0 1-6.75 0ZM1.5 19.125a7.125 7.125 0 0 1 14.25 0v.003l-.001.119a.75.75 0 0 1-.363.63 13.067 13.067 0 0 1-6.761 1.873c-2.472 0-4.786-.684-6.76-1.873a.75.75 0 0 1-.364-.63l-.001-.122ZM17.25 19.128l-.001.144a2.25 2.25 0 0 1-.233.96 10.088 10.088 0 0 0 5.06-1.01.75.75 0 0 0 .42-.643 4.875 4.875 0 0 0-6.957-4.611 8.586 8.586 0 0 1 1.71 5.157v.003Z" />
+</svg>
+ <button class="nav-button" data-page="videochamada">
+  
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path d="M4.5 4.5a3 3 0 0 0-3 3v9a3 3 0 0 0 3 3h8.25a3 3 0 0 0 3-3v-9a3 3 0 0 0-3-3H4.5ZM19.94 18.75l-2.69-2.69V7.94l2.69-2.69c.944-.945 2.56-.276 2.56 1.06v11.38c0 1.336-1.616 2.005-2.56 1.06Z" />
+</svg>
+ </button>
+            <button class="nav-button" data-page="chamada">
+            
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z" clip-rule="evenodd" />
+</svg>
+            </button>
+            <button class="nav-button" data-page="reuniao">
+            
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M8.25 6.75a3.75 3.75 0 1 1 7.5 0 3.75 3.75 0 0 1-7.5 0ZM15.75 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM2.25 9.75a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM6.31 15.117A6.745 6.745 0 0 1 12 12a6.745 6.745 0 0 1 6.709 7.498.75.75 0 0 1-.372.568A12.696 12.696 0 0 1 12 21.75c-2.305 0-4.47-.612-6.337-1.684a.75.75 0 0 1-.372-.568 6.787 6.787 0 0 1 1.019-4.38Z" clip-rule="evenodd" />
+  <path d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
+</svg>
+            </button>
+      </button>
+      <button class="nav-button" data-page="config">
+        
+                
+<svg class="con" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm8.25 5.25a.75.75 0 0 1 .75-.75h8.25a.75.75 0 0 1 0 1.5H12a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+</svg>
+      </button>
+    </div>
+  </header>
+  <nav>
+    <div id="videochamada" class="page">
+            <h2> Página videochamada</h2>
+            <p style="color: red;">infelismente ainda nao tem serviço volte mas tarde</p>
+        </div>
+<div id="chamada" class="page">
+    {% if not amigo_selecionado %}
+    <h2 style="color:rgb(165, 89, 49); margin-bottom:20px;">Página de chamada</h2>
+    <ul>
+        {% for amigos in amigos %}
+        <li style="margin-top:50px;">
+            <div tabindex="0" role="button" style="cursor: pointer; color: white;"
+                onclick="iniciarChamadaCom({{ amigos.id }}, '{{ amigos.nome }} {{ amigos.sobre_nome }}')"
+                onkeydown="if(event.key==='Enter'){iniciarChamadaCom({{ amigos.id }}, '{{ amigos.nome }} {{ amigos.sobre_nome }}')}">
+                <span style="color:white;">
+                    {{ amigos.nome }} {{ amigos.sobre_nome }}
+                    <svg id="icon_chamada" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M1.5 4.5a3 3 0 0 1 3-3h1.372c.86 0 1.61.586 1.819 1.42l1.105 4.423a1.875 1.875 0 0 1-.694 1.955l-1.293.97c-.135.101-.164.249-.126.352a11.285 11.285 0 0 0 6.697 6.697c.103.038.25.009.352-.126l.97-1.293a1.875 1.875 0 0 1 1.955-.694l4.423 1.105c.834.209 1.42.959 1.42 1.82V19.5a3 3 0 0 1-3 3h-2.25C8.552 22.5 1.5 15.448 1.5 6.75V4.5Z"
+                            clip-rule="evenodd" />
+                    </svg>
+                </span>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</div>
+<!-- Fundo escurecido (ofuscado) -->
+<div id="fundo-ofuscado"></div>
+<!-- Modal da chamada -->
+<div id="modal-chamada" tabindex="0">
+    
+    <svg class="con1_2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24" fill="currentColor" style="width: 80px; height: 80px;">
+        <path fill-rule="evenodd"
+            d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653ZM6.145 17.812A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+            clip-rule="evenodd" />
+    </svg>
+    <h2 style="margin: 20px;"><span id="nome-modal"></span></h2>
+    <p id="status-chamada">Chamando <strong id="typing-text"></strong></p>
+    <!-- Controles para quem iniciou a chamada -->
+    <div id="controles-chamada" >
+        <button id="btn-mute" onclick="toggleMute()">🔊</button>
+        <button id="btn-encerrar" onclick="encerrarChamada()">❌ Encerrar</button>
+    </div>
+    <!-- Controles para quem recebeu a chamada -->
+    <div id="controles-resposta" style="display: none; margin-top: 20px;">
+        <button id="btn-aceitar" onclick="aceitarChamada()">✅ Atender</button>
+        <button id="btn-recusar" onclick="recusarChamada()">❌ Recusar</button>
+    </div>
+</div>
+            <div id="reuniao" class="page">
+            <h2> Página Reunião</h2>
+
+            <p style="color: red;">infelismente ainda nao tem serviço volte mas tarde</p>
+        </div>
+
+<!-- Página Home -->
+<div id="home" class="page active">
+  <h2>🏠 Página Inicial</h2>
+  <p>Bem-vindo ao Connected World!</p>
+  <br>
+  <p> Este é um projeto criado pelo <span>Domingos Gomes Pembele</span> , se tens uma conta é pq agora  fazes parte  de um mundo novo, sem demora vamos para a esplicação de quais são as funções deste projeto e o de pq que ele é, ou será  diferente de todas as redes socias.</p>
+  <br>
+  <p> A <span>Connected World</span> é uma rede social em desenvolvimento este ainda não é o aspecto final dela este é só a beta(fase de testes) ate agora já foram acrescentados as seguintes funções:</p>
+  <br>
+  <ul>
+    <li> <i> <span style="color:aqua; font-size: 19px;">criação de conta</span> </i>  (ainda em aprimoramento)</li>
+    <br>
+    <li> <i> <span style="color:aqua; font-size: 19px;">sistema de login</span> </i> (ainda em aprimoramento)</li>
+    <br>
+    <li> <i> <span style="color:aqua; font-size: 19px;">usuario,amigo do usuario</span></i>  (se tu adicionares um novo amigo ele sera seu amigo, ou seja nao se faz pedido de amisade, é tudo automatico basta tu adicionares que os dois seram amigos) </li>
+    <br>
+    <li> <i> <span style="color:aqua; font-size: 19px;"> mensagem,traducao automatica</span></i>  (Ao criares a conta o idioma do seu navegador sera guardado no banco de dados automaticamente, quando entrares no chat com um amigo a traducao automatica estara ativada com opcao de desativar , se atraducao automatica estiver ativada e receberes uma sms com texto diferente do teu idioma a sms   sera tradusida para o seu idioma  )</li>
+    <br>
+    <li> <i> <span style="color:aqua; font-size: 19px;">Chamada</span></i>  (chamada de voz normal,ponto a ponto )</li>
+  </ul> 
+   <span style="color:aqua; font-size: 17px;">Esta primeira faze de teste ficara no ar durante 2 semanas  depois disso ficara fora dor durante um mes.<br> Lembrando que o projeto ainda nao esta completo por favor nao compartilhe informacoes que possam ser usado contra voce os teus dados nao seram compartilhados por mim <span>Domingos Gomes Pembele</span> pós uso incriptacoes que nem eu consigo acessar os teus dados, mas nao se esquece que existem crackers.</span>
+  <br><br>
+   <p> para dares as tuas ideis de coisas que podemm mudar ou ser aprimoradas  a conta oficial  de desenvolvidor : <span>Domingos_develop_Connected_World</span> porfavor preciso de ideias construtivas, que ajudem a melhorar o projeto nao bobas sem cabimento </p>
+  </div>
+
+
+<!-- Página SMS -->
+<div id="sms" class="page">
+  {% if not amigo_selecionado %}
+  <ul>
+    {% for amigos in amigos %}
+      <li  style=" margin-top:50px;">
+        <a href="/chat/{{ amigos.id }}">
+          <span style="color:white;">{{ amigos.nome }} {{ amigos.sobre_nome }}</span> 📨 Abrir chat
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <h3>Chat com {{ amigo_selecionado.nome }}</h3>
+  <div id="mensagens">
+    {% set data_anterior = None %}
+{% for msg in mensagens %}
+  {% set data_formatada = msg.timestamp|formatar_data %}
+  {% if data_formatada != data_anterior %}
+    <div style="text-align:center; margin-top:-200px; color: gold; font-weight: bold;">
+      {{ data_formatada }}
+    </div>
+    {% set data_anterior = data_formatada %}
+  {% endif %}
+  {%if msg.tip== 'sistema' %}
+  <div id="msg-sistem">
+    {{msg.conteudo}}
+  </div>
+  
+  {%else%}
+  <div class="mensagem" style=" 
+    max-width: 30%; 
+    height: 175px; 
+    border-radius: 5px; 
+    background-color: {% if msg.remetente_id == amigo_selecionado.id %}#444{% else %}#15A986{% endif %}; 
+    color: white; 
+    text-align: {% if msg.remetente_id == amigo_selecionado.id %}left{% else %}left{% endif %}; 
+    margin-left: {% if msg.remetente_id == amigo_selecionado.id %}0{% else %}auto{% endif %}; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+  ">
+    <p style="margin: 1px 0; padding:10px;">{{ msg.conteudo_traduzido }}</p>
+    {% if msg.status == 'enviado-sem-traducao' and msg.destinatario_id == usuario.id %}
+      <p style="color: yellow; font-size: 12px; padding: 0 10px; margin: 0;">
+        ⚠️ Esta mensagem não foi traduzida por erro de rede ou idioma.
+      </p>
+    {% endif %}
+    <div style="font-size: 12px; padding:10px; display: flex; justify-content: space-between;">
+      <span style="color: gold;">{{ msg.timestamp|hora_minuto }}</span>
+      <span style="color: 
+        {% if msg.status == 'enviado' %}lightgreen 
+        {% elif msg.status == 'enviando' %}orange 
+        {% else %}red 
+        {% endif %} 
+      ; animation: piscar 0.8s infinite;">
+        {% if msg.status == 'enviado' %}✅
+        {% elif msg.status == 'enviando' %}⏳
+        {% else %}❌
+        {% endif %}
+      </span>
+    </div>
+  </div>
+  {%endif%}
+{% endfor %}
+<br>
+</div>
+    <form method="POST" action="/enviar_mensagem" onsubmit="return desativarEnvio(this)">
+  <input type="hidden" name="destinatario_id" value="{{ amigo_selecionado.id }}">
+  <textarea id="campoTexto" name="conteudo" rows="2" required></textarea><br>
+  <button type="submit" id="btnEnviar">Enviar</button>
+</form>
+<br>
+  <a href="/fechar_chat" style="color: gold;">← Voltar para lista</a>
+{% endif %}
+  </div>
+<!-- Página Amigos -->
+<div id="amigos" class="page">
+
+  <h2>👥 Amigos</h2>
+  {% for amigo in amigos %}
+    <p class="p2">{{ amigo.nome }} {{ amigo.sobre_nome }}</p>
+  {% endfor %}
+  <form method="POST" class="form" action="/procurar_amigos">
+                <label for="search">
+                    <input name="termo" required autocomplete="off" placeholder="Procurar Amigo" id="search"
+                        type="text">
+                    <div class="icon">
+                        <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" class="swap-on">
+                            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linejoin="round"
+                                stroke-linecap="round"></path>
+                        </svg>
+                        <svg stroke-width="2" stroke="currentColor" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg" class="swap-off">
+                            <path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linejoin="round" stroke-linecap="round"></path>
+                        </svg>
+                    </div>
+                    <button type="submit" class="close-btn">
+                        <svg viewBox="0 0 20 20" class="h-5 w-5" xmlns="http://www.w3.org/2000/svg">
+                            <path clip-rule="evenodd"
+                                d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                fill-rule="evenodd"></path>
+                        </svg>
+                    </button>
+                </label>
+  </form>
+  {% if resultado %}
+    {% for usuario in resultado %}
+      <div class="p4" style="margin-top: 10px;">
+        <br>
+        <p>{{ usuario.nome }} {{ usuario.sobre_nome }}</p>
+        {% if usuario.id in amigos_ids %}
+          <button class="bt" disabled style="opacity: 0.5;">✅ Já são amigos</button>
+        {% else %}
+          <form method="POST" action="/adicionar_amigo">
+            <input type="hidden" name="amigo_id" value="{{ usuario.id }}">
+            <button type="submit" class="bt">➕ Adicionar amigo</button>
+          </form>
+        {% endif %}
+      </div>
+    {% endfor %}
+  {% endif %}
+  {% if sem_resultado %}
+    <p class="p5" style="color: red;">❌ Nenhum amigo encontrado com esse nome.</p>
+  {% endif %}
+</div>
+<!-- Página Configurações -->
+<div id="config" class="page">
+  <h2>⚙️ Configurações</h2>
+  <!-- Suas opções personalizadas -->
+  <form action="/logout" method="get" style="margin-top: 20px;">
+    <button class="bt" type="submit">🔒 Terminar Sessão</button>
+  </form>
+</div>
+</nav>
+
+<script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+<script src="{{ url_for('static', filename='chamada.js') }}"></script>
+
+{% if amigo_selecionado is defined and amigo_selecionado %}
+  <script>
+    window.DESTINATARIO_ID = {{ amigo_selecionado.id }};
+    window.NOME= "{{ amigo_selecionado.nome }} {{ amigo_selecionado.sobre_nome }}";
+  </script>
+{% else %}
+  <script>
+    window.DESTINATARIO_ID = null;
+    window.NOME = "";
+  </script>
+{% endif %}
+<script>
+  window.NOME_AMIGO={{ session['nome'] }}
+  window.USUARIO_ID = {{ session['usuario_id'] }};
+</script>
+
+<script>
+  function desativarEnvio(form) {
+  const botao = form.querySelector('button[type="submit"]');
+
+  // 2. Desativa o botão para evitar múltiplos envios
+  botao.disabled = true;
+  botao.innerText = "Enviando...";
+  return true; // continua o submit normalmente
+}
+
+
+const navButtons = document.querySelectorAll('.nav-button');
+const pages = document.querySelectorAll('.page');
+// Limpar todos os campos exceto hidden
+function limparCampos() {
+  document.querySelectorAll('input:not([type="hidden"]), textarea').forEach(el => el.value = '');
+}
+// Mostrar a página ativa e destacar o botão correspondente
+function showPage(id) {
+  pages.forEach(p => p.classList.remove('active'));
+  const pageToShow = document.getElementById(id);
+  if (pageToShow) pageToShow.classList.add('active');
+  navButtons.forEach(btn => {
+    const btnPage = btn.getAttribute("data-page");
+    if (btnPage === id || (id === "procurar amigos" && btnPage === "amigos")) {
+      btn.classList.add("active");
+    } else {
+      btn.classList.remove("active");
+    }
+  });
+  sessionStorage.setItem('paginaAtiva', id);
+  limparCampos();
+}
+
+// Trocar abas ao clicar em um botão de navegação
+navButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    const pageId = button.getAttribute('data-page');
+    showPage(pageId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+});
+// Restaurar aba ativa após recarregamento da página
+window.addEventListener("pageshow", function () {
+  limparCampos();
+  const paginaSalva = sessionStorage.getItem('paginaAtiva') || 'home';
+  showPage(paginaSalva);
+  setTimeout(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, 10);
+});
+// Auto-scroll para a última mensagem ao abrir o chat
+window.addEventListener("pageshow", () => {
+  const divMensagens = document.getElementById("mensagens");
+  if (divMensagens) {
+    divMensagens.scrollTop = divMensagens.scrollHeight;
+  }
+});
+const idiomaUsuario = navigator.language || navigator.userLanguage;
+fetch('/definir_idioma', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify({ idioma: idiomaUsuario })
+}).then(res => res.json()).then(data => {
+  console.log("Idioma enviado ao servidor:", idiomaUsuario);
+});
+
+function alertar(){
+  alert("ainda nao tem esta funcao")
+}
+
+</script>
+
+</body>
+</html>

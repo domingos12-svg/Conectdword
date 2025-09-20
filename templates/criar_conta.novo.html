@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Criar Conta - Kanuca TV</title>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: rgb(165, 89, 42);
+            margin-bottom: 20px;
+            margin-left: -30px;
+
+        }
+
+        body {
+            font-family: 'Comic Neue', cursive;
+            overflow: hidden;
+            width: 100vh;
+            height: 100vh;
+            background: linear-gradient(270deg, #011627, #081c15);
+
+
+        }
+
+        .container {
+            margin-top: -270px;
+            left: 800px;
+            background: #011627;
+            border-radius: 20px;
+            height: 530px;
+            width: 370px;
+
+            box-shadow: 0 8px 20px white;
+            text-align: center;
+            position: relative;
+            animation: fadeIn 1s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+        h2 {
+
+            text-align: center;
+            color: #f15a24;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+p{
+  color: darkgray;
+}
+        h3 {
+            color: #f15a24;
+        }
+
+        input,
+        select {
+            width: 90%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+
+            background: #081c15;
+            color: white;
+            border: none;
+            padding: 9px;
+            font-size: 18px;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: transform 0.3s;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+
+        }
+
+        .y {
+
+
+            width: 1000px;
+        }
+
+        .y1 {
+
+            width: 500px;
+            height: 123px;
+            gap: 7px;
+            margin-top: 200px;
+            margin-left: 200px;
+        }
+
+        /* Cursor piscando */
+        #typing-text::after {
+            content: '|';
+            animation: blink 1s infinite step-start;
+        }
+
+        @keyframes blink {
+            50% {
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="y">
+
+        <div class="y1">
+            <h1>Connected World</h1>
+            <h3 id="typing-text" class="p"></h3>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <form method="POST" action="/criar_conta">
+            <input name="nome" type="text" placeholder="Nome de utilizador" required>
+            <input type="text" name="sobre_nome" placeholder="sobre nome de utilizador" required>
+            <input type="text" placeholder="E-mail "name="email" required>
+            <input type="password" placeholder="Palavra-passe" name="senha" required>
+            <input name="data_nado" type="date" required>
+            <select id="genero" name="genero" onchange="verificarGenero()" value="">
+                <option value="">Selecione</option>
+                <option value="Masculino">Masculino</option>
+                <option value="Feminino">Feminino</option>
+                <option value="Não-binário">Não-binário</option>
+                <option value="Prefiro não dizer">Prefiro não dizer</option>
+                <option value="Outro">Outro (especificar)</option>
+            </select>
+
+            <hr class="linha">
+            <p style="text-align: center;"> Ao criar uma conta, voce concorda com os nossos
+                <a href="/termos" target="_blank">Termos de uso</a> e <a href="/privacidade">privacidade</a>
+                <br>já tem uma conta? <a class="entrar" href="\">Entrar</a>
+            </p>
+            <button type="submit">Criar Conta</button>
+        </form>
+
+    </div>
+
+    <script>
+        const textElement = document.getElementById("typing-text");
+        const fullText = "Crie sua conta e faça parte de um mundo onde todos podem se conectar, sem limites e restrições junte-se a nós!";
+        let index = 0;
+        let typing = true;
+
+        function typeLoop() {
+            if (typing) {
+                if (index < fullText.length) {
+                    textElement.textContent += fullText.charAt(index);
+                    index++;
+                    setTimeout(typeLoop, 40);
+                } else {
+                    typing = false;
+                    setTimeout(typeLoop, 6000);
+                }
+            } else {
+                if (index > 0) {
+                    textElement.textContent = fullText.substring(0, index - 1);
+                    index--;
+                    setTimeout(typeLoop, 20);
+                } else {
+                    typing = true;
+                    setTimeout(typeLoop, 500);
+                }
+            }
+        }
+
+        window.addEventListener("load", typeLoop);
+    </script>
+</body>
+
+</html>

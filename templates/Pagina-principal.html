@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Connected World</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='c.css') }}">
+</head>
+<body>
+
+<header class="prin">
+    <div class="algo">  
+        <h1>Connected World</h1>
+        <h2>Permite que qualquer pessoa se conecte com o mundo de <br>forma simples e sem limites. Aqui, encurtam-se <br>distâncias e criando novas oportunidades.<br>Conecte-se hoje e faça parte de um mundo sem <br>limites.</h2>
+    </div>
+
+    <div class="f">
+        <form method="POST" method='GET' action="{{ url_for('login') }}">
+            <br>
+            
+            <input style="border-radius: 5px; cursor:pointer; color:rgb(0, 0, 0);" 
+                   id="campo-nome" type="email" name="email" placeholder="Email ou Telefone" required>
+            <br><br>
+
+            <input style="border-radius: 5px; color:rgb(0, 0, 0); cursor:pointer" 
+                   id="campo-senha" type="password" name="senha" placeholder="Senha" required>
+            <br><br>
+
+            <input class="w" style="cursor:pointer; background:rgba(1, 52, 36, 0.929); border-radius: 5px; border:none; color:white;" 
+                   type="submit" value="Entrar">
+            <br><br>
+
+            <a class="ad" href="{{ url_for('ps') }}">Esqueceu a Senha?</a>
+            <br>
+
+            <div class="divi"><a href="{{ url_for('criar_conta') }}">Criar  Conta</a></div>
+        </form>
+    </div>
+
+    <p>Conecte-se já com o seu amigo, aproxime-se de quem importa, converse<br> sem limites.</p>
+</header>
+
+<div class="animacao">
+
+    <img class="imagen" src="{{ url_for('static', filename='imagens/file-N8QyoRCiFdZKX7ihhbkKDM.webp') }}" alt="imagem">
+    <div class="animacao2">
+        <h1 class="animacao1">Connected World</h1>
+
+    </div>
+    <div class="wrapper">
+        <div class="circle"></div>
+        <div class="circle"></div>
+        <div class="circle"></div>
+
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+        <div class="shadow"></div>
+    </div>
+</div>
+
+</body>
+</html>

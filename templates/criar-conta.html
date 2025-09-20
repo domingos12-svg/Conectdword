@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="static\cadastro.css">
+</head>
+<style>
+    
+
+  select {
+    margin: 0.5rem;
+    padding: 0.4rem 1rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+</style>
+<body>
+  <h1 class="h">Connected World</h1>
+  <p class="p">Tagline Here</p>
+  
+ 
+    <hr class="linha">
+    <form class="inputs" method="POST">
+      
+      <input type="text" name="nome" id="nome" placeholder="Nome">
+    <input type="text" id="sobre_nome" placeholder="Sobrenome"name="sobre_nome">
+  
+  <section class="sel" name="data_nado">
+  <label>Data de nascimento</label><br>
+  <select id="daySelect"></select>
+  <select id="monthSelect"></select>
+  <select id="yearSelect"></select>
+  </section>
+  <label id="genero2" for="genero">Gênero:</label>
+  <select id="genero" name="genero" onchange="verificarGenero()" value="">
+    <option value="">Selecione</option>
+    <option value="Masculino">Masculino</option>
+    <option value="Feminino">Feminino</option>
+    <option value="Não-binário">Não-binário</option>
+    <option value="Prefiro não dizer">Prefiro não dizer</option>
+    <option value="Outro">Outro (especificar)</option>
+  </select>
+
+  <div id="personalizadoInput" class="m">
+    <label for="generoPersonalizado">Digite seu gênero:</label>
+    <input type="text" id="generoPersonalizado" name="generoPersonalizado" placeholder="Escreva aqui">
+  </div>
+  
+    <input id="u" type="text" placeholder="Celular ou email" name="email" required>
+    <input  id="u1" type="password" placeholder="Criar senha" name="senha" required>
+    <br><br>
+    <hr class="linha">
+    
+  <p style="text-align: center;"> Ao criar uma conta, voce concorda com os nossos
+  <a href="/termos" target="_blank">Termos de uso</a> e <a href="/privacidade">privacidade</a>
+  <br>já tem uma conta? <a class="entrar" href="Pagina-principal.html">Entrar</a>
+</p>
+<input id="voz" style="margin-left: 150px;background-color:rgb(30, 2, 2);color:white" type="submit" value="Criar conta">
+</form>
+
+  </div>
+<script src="static\java.js"></script>
+</body>
+</html>

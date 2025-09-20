@@ -1,0 +1,126 @@
+* {
+    box-sizing: border-box;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap');
+
+body {
+    margin: 0;
+    font-family: "Open Sans", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 700px;
+    background-color: rgba(0, 0, 0, 0.874);
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+nav {
+    margin-top: 10px;
+    background-color: rgba(207, 198, 215, 0.395);
+    height: 560px;
+    width: 450px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px 0 rgba(254, 253, 253, 0.5), 0 6px 20px 0 rgb(0, 0, 0);
+
+
+}
+
+a {
+    color: rgb(10, 37, 173);
+}
+
+.part-cadastro {
+    color: rgb(0, 0, 0);
+    text-align: center;
+}
+
+.p1 {
+    margin-top: -10px;
+}
+
+input {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+}
+
+.input1 {
+    margin-left: 230px;
+    margin-top: -40px;
+}
+
+.t {
+    margin-left: 20px;
+
+}
+
+.sel {
+    margin-left: 20px;
+    margin-top: 5px;
+    ;
+}
+
+select {
+    width: 134px;
+    height: 30px;
+    border: none;
+    border-radius: 5px;
+
+}
+
+#genero {
+    margin-left: 20px;
+
+}
+
+#genero2 {
+    margin-top: 10px;
+    margin-left: 20px;
+
+}
+
+#personalizadoInput {
+    margin-left: 230px;
+    margin-top: -50px;
+
+}
+
+#generoPersonalizado {
+    height: 30px;
+}
+
+.l {
+    margin-top: 18px;
+    margin-left: 20px;
+}
+
+.linha {
+    border: none;
+    height: 1px;
+    width: 450px;
+    background-color: rgba(0, 0, 0, 0.274);
+
+}
+
+.p {
+    margin-top: -20px;
+}
+
+.p,
+.h {
+    color: rgb(165, 89, 42);
+    ;
+
+}

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Erro</title>
+    <link rel="stylesheet" href="static\erro.css">
+</head>
+<body>
+   
+    <nav class="principal">
+        <h1>Connected World</h1>
+    </nav>
+
+    
+<form class="subprincipal" method="POST" method='GET' action="{{ url_for('login') }}">
+        <h3 style="color: red;">{{ mensagem or "Credenciais inválidas." }}</h3>
+
+        <input type="text" name="email" placeholder="Email" required>
+
+        <input type="password" name="senha" placeholder="Senha" required>
+
+        <a href="{{ url_for('ps') }}">Esqueceu a Senha?</a>
+        
+        <input type="submit" value="Tentar Novamente">
+    </form>
+</body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+
+    }
+
+    body {
+
+
+        background: #151320;
+    }
+
+    nav {
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .record {
+        background: #151320;
+        position: relative;
+        text-align: center;
+        width: 400px;
+        height: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 20px;
+        flex-direction: column;
+
+
+
+
+    }
+
+    .record::before,
+    .record::after {
+        content: "";
+        position: absolute;
+        width: calc(100% + 30px);
+        height: calc(100% + 30px);
+        background: linear-gradient(45deg, #ffff00, #00ff00, #0099ff, #001aff, #a200ff,
+                #ff0055, #ff0000, #ffff00, #00ff00, #0099ff, #001aff, #a200ff);
+        z-index: -1;
+        border-radius: 20px;
+        background-size: 300%;
+        animation: ani 5s linear infinite alternate-reverse;
+    }
+
+    @keyframes ani {
+        0% {
+            background-position: 0;
+        }
+
+        100% {
+            background-position: 300%;
+        }
+    }
+
+    .record::after {
+        filter: blur(50px);
+    }
+
+    button {
+        font-size: 1.2em;
+        padding: 10px 30px;
+        margin: 10px;
+        border-radius: 15px;
+        background-color: #0ff;
+        color: #000;
+        cursor: pointer;
+        transition: 0.3s;
+        border: none;
+
+    }
+
+    button:hover {
+        background-color: #00c6c6;
+    }
+
+    audio {
+        margin-top: 20px;
+    }
+
+    p,
+    h2 {
+
+        color: #00ff00;
+        text-align: center;
+
+    }
+
+
+    h1 {
+
+        background: linear-gradient(270deg,
+                red,
+                orange,
+                yellow,
+                green,
+                blue,
+                indigo,
+                violet,
+                red,
+                black,                              
+                white,
+                brown,
+                navy);
+        background-size: 1400% 1400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: arcoirisBrilhante 8s ease infinite;
+        filter: drop-shadow(0 0 8px #fff);
+        text-align: center;
+    }
+
+    @keyframes arcoirisBrilhante {
+        0% {
+            background-position: 0% 50%;
+            filter: drop-shadow(0 0 5px #fff);
+        }
+
+        50% {
+            background-position: 100% 50%;
+            filter: drop-shadow(0 0 20px #fff);
+        }
+
+        100% {
+            background-position: 0% 50%;
+            filter: drop-shadow(0 0 5px #fff);
+        }
+    }
+
+
+
+
+    @import url('http//fonts.googleapis.com/css2?family=Orbitron:wght@600& display=swap');
+</style>
+
+<body>
+
+
+    <h2>Por favor insira a sua voz </h2>
+    <p>Depois de começar tens 10s para gravar a sua voz por favor fale alguma coisa</p>
+
+    <nav>
+<form method="POST" method='GET' action="{{ url_for('partvozes') }}">
+        <div class="record">
+            <h1 id="h1"></h1>
+            <div class="t">
+                <button onclick="stratRecording()">gravar</button>
+                </button>
+                <button onclick="stopRecording()">parar</button>
+                <audio id="audio" controls></audio>
+                <button>continuar</button>
+                <button onclick="redirecinar()">cancelar</button>
+            </div>
+        </div>
+    </nav>
+</form>
+
+    <script>
+        let mediaRecorder
+        let audioChunks = []
+
+        const waveAnim = document.getElementById("waveAnim");
+        const recorderBox = document.getElementById("recorderBox")
+
+        async function stratRecording() {
+            const stream = await
+                navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new
+                MediaRecorder(stream);
+            mediaRecorder.ondataavailable = event => {
+                audioChunks.push(event.data);
+            }
+            const b = document.getElementById("h1").innerHTML = "gravando..."
+
+            mediaRecorder.onstop = () => {
+                const audioBlob = new
+                    Blob(audioChunks, { type: 'audio/webm' });
+                const audioUrl =
+                    URL.createObjectURL(audioBlob);
+                document.getElementById("audio").src = audioUrl;
+                audioChunks = [];
+                waveAnim.style.vibility = "hidden"
+                recorderBox.classList.remove("gravando")
+            };
+            mediaRecorder.start();
+            waveAnim.style.vibility = "visible";
+            recorderBox.classList.add("gravando")
+        }
+        function stopRecording() {
+            mediaRecorder.stop();
+            const b = document.getElementById("h1").innerHTML = "gravação terminada"
+        }
+        function redirecinar() {
+            window.location.replace
+                ('partvoz.html');
+        }
+
+
+    </script>
+</body>
+
+</html>
