@@ -78,7 +78,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('Pagina_principal'))
+    return redirect(url_for('pagina_principal'))
 #parte de procurar amigo
 @app.route('/procurar_amigos', methods=['POST'])
 def procurar_amigos():
