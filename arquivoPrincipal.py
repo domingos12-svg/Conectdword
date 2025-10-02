@@ -12,7 +12,7 @@ app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_segura'
 
 # Configurações do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///cnw.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/cnw.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa o banco
