@@ -1,1 +1,1 @@
-web: gunicorn arquivoPrincipal:app
+web: gunicorn --worker-class eventlet -w 1 arquivoPrincipal:app
