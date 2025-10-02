@@ -1,4 +1,5 @@
-
+import eventlet
+eventlet.monkey_patch()
 from flask import Flask, render_template, request, redirect, session, url_for,jsonify
 from sqlalchemy import or_, and_
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,7 +14,7 @@ app = Flask(__name__)
 app.secret_key = 'sua_chave_secreta_segura'
 
 # Configurações do banco de dados
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/cnw.db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////tmp/cnw.db?check_same_thread:False'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializa o banco
