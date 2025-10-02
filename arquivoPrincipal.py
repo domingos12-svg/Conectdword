@@ -44,7 +44,7 @@ def hora_minuto(data):
 @app.route('/')
 def pagina_principal():
     nome = session.get('usuario_nome')
-    return render_template('pagina-principal.html', nome=nome)
+    return render_template('Pagina-principal.html', nome=nome)
 #parte esqueceu senha
 @app.route('/l')
 def ps():
@@ -76,7 +76,7 @@ def login():
 @app.route('/logout')
 def logout():
     session.clear()
-    return redirect(url_for('pagina_principal'))
+    return redirect(url_for('Pagina_principal'))
 #parte de procurar amigo
 @app.route('/procurar_amigos', methods=['POST'])
 def procurar_amigos():
