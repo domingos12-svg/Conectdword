@@ -38,9 +38,14 @@ function pararTimer() {
     timerEl.style.display = "none";
     timerEl.textContent = "00:00";
 }
+// URL completa do servidor Render
+
+
 // ====== SOCKET ======
 function initSocket() {
-    socket = io();
+    socket = io("https://conectdword.onrender.com", {
+        transports: ["websocket", "polling"]
+    });
     socket.on('connect', () => {
         console.log('Socket conectado:', socket.id);
         if (window.USUARIO_ID) {

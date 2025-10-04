@@ -305,6 +305,17 @@
       border-radius: 6px;
       cursor: pointer;
     }
+    .redirect:hover,.bt:hover{
+      border: 3px solid gold;
+    }
+    .redirect{
+      background-color: #081c15;
+      border: 1px solid gold;
+      padding: 25px 28px;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
     ul { list-style: none; padding: 0; }
     li { margin-bottom: 10px; }
     a { color: aqua; text-decoration: none; }
@@ -618,7 +629,9 @@ overflow:hidden;
             <p style="color: red;">infelismente ainda nao tem serviço volte mas tarde</p>
         </div>
 <div id="chamada" class="page">
-    {% if not amigo %}
+     {% if not amigos %}
+ <button onclick="redirect()" class="redirect">Ainda não tens amigos➕</button>
+ {% endif %}
    
         {% for amigos in amigos %}
         <div class="card-amigo"
@@ -631,7 +644,7 @@ overflow:hidden;
             </div>
         {% endfor %}
   
-     {% endif %}
+  
 </div>
 <!-- Fundo escurecido (ofuscado) -->
 <div id="fundo-ofuscado"></div>
@@ -664,6 +677,9 @@ overflow:hidden;
 
 <!-- Página SMS -->
 <div id="sms" class="page active">
+   {% if not amigos %}
+ <button onclick="redirect()" class="redirect">Ainda não tens amigos➕</button>
+ {% endif %}
   {% if not amigo_selecionado %}
   
     {% for amigos in amigos %}
@@ -745,12 +761,17 @@ overflow:hidden;
 <div id="amigos" class="page">
 
   <h2>👥 Amigos</h2>
+ 
             {% for amigo in amigos %}
             <div class="card-amigo">
                 <div class="avatar">{{ amigo.nome[0] }}{{ amigo.sobre_nome[0] }}</div>
                 <div class="info-amigo">
                     <p>{{ amigo.nome }} {{ amigo.sobre_nome }}</p>
+                  
                 </div>
+                {% if not amigos %}
+              <h2> Ainda não tem amigos</h2>
+                {% endif %}
             </div>
             {% endfor %}
       
@@ -803,7 +824,7 @@ overflow:hidden;
   <h2>⚙️ Configurações</h2>
   <!-- Suas opções personalizadas -->
   <form action="/logout" method="get" style="margin-top: 20px;">
-    <button class="bt" type="submit">🔒 Terminar Sessão</button>
+    <button class="bt" type="submit" onclick="terminarSessao()">🔒 Terminar Sessão</button>
   </form>
 </div>
 </nav>
@@ -898,9 +919,18 @@ fetch('/definir_idioma', {
 });
 
 function alertar(){
-  alert("ainda nao tem esta funcao")
+  alert("Esta função ainda não foi incrmentada, por favor aguarde até a proxima atualização")
 }
+function terminarSessao(){
+   limparCampos();
+  const paginaSalva ='sms';
+  showPage(paginaSalva);
 
+}
+function redirect(){
+  const paginaSalva ='amigos';
+  showPage(paginaSalva);
+}
 </script>
 
 </body>
