@@ -1,9 +1,9 @@
-from flask import request, session, jsonify
+from flask import*
 from flask_socketio import SocketIO, emit, join_room
 from datetime import datetime
 from conecao_site import db, Mensagem, Usuario
 import logging
-socketio = SocketIO(cors_allowed_origins="*")
+socketio = SocketIO(app,cors_allowed_origins="*",async_mode="eventlet")
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 # Controle de chamadas atendidas: guarda pares de usuários que entraram
